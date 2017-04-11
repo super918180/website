@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery插件库-收集最全最新最好的jQuery插件</title>
+    <meta name="description" content="本站致力于收集jQuery插件和提供各种jQuery特效的详细使用方法,在线预览，jQuery插件下载及教程" />
+    <meta name="keywords" content="jQuery,jQuery特效,jQuery ui,jQuery插件,jQuery 教程,css3,网页特效,JS特效" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="Shortcut icon" href="img/favicon.ico" />
+    <link href="public/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="public/css/font-awesome.min.css" rel="stylesheet">
+    <link href="public/css/my.css" rel="stylesheet" media="screen">
+    <link href="public/css/index.css" rel="stylesheet" media="screen">
+</head>
+
+<body data-spy="scroll" data-target=".navbar-example">
+    <!--nav-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                <a class="navbar-logo" href="http://www.jq22.com/"><img src="public/img/logo.png" height="100%" alt="超"></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://www.jq22.com/daima"><i class="fa fa-download"></i> &nbsp;下载</a></li>
+                    <li><a href="https://github.com/super918180"><i class="fa fa-github"></i> &nbsp;GitHub</a></li>
+                    <li><a href="http://www.cnblogs.com/songxiaoyu"><i class="fa fa-address-book" aria-hidden="true"></i> &nbsp;博客</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+    <!--end nav-->
+    <div class="container-fluid banner banbk">
+        <div class="banseo">
+            <div class="banjz"><span>少壮不努力，老大徒伤悲</span></div>
+            <input type="text" class="bantxt" id="searchtxt" placeholder="输入插件关键字.."><button class="btn banbutt" type="button" id="seobut"><i class="fa fa-chevron-circle-right"></i> 找到你梦想</button><span class="seoicn"><i class="fa fa-search"></i></span>
+        </div>
+    </div>
+
+    <!--nav-->
+    <div class="yn jz container-fluid nav-bg m0" id="menu_wrap">
+        <div class="container m0" style="position:relative;">
+            <a class="nzz" href="javascript:;" id="z1"><span class="sort"><i class="fa fa-html5"></i>&nbsp;HTML5</span></a>|
+            <a class="nzz" href="javascript:;" id="z2"><span class="sort"><i class="fa fa-css3"></i>&nbsp;CSS3</span></a>|
+            <a class="nzz" href="javascript:;" id="z3"><span class="sort"><i class="fa fa-quora"></i>&nbsp;jQuery</span></a>|
+            <a class="nzz" href="javascript:;" id="z4"><span class="sort "><i class="fa fa-pie-chart"></i>&nbsp;Canvas</span></a><span class="navxs">|
+            <a class="nzz" href="javascript:;" id="z5"><span class="sort"><i class="fa fa-line-chart"></i>&nbsp;SVG</span></a>|
+            <a class="nzz" href="javascript:;" id="z5"><span class="sort"><i class="fa fa-bold"></i>&nbsp;Bootstrap</span></a>|
+            <a class="nzz" href="javascript:;" id="z5"><span class="sort"><i class="fa fa-code"></i>&nbsp;Node.js</span></a>
+        </div>
+    </div>
+    <!--end nav-->
+    <!--主体-->
+    <div class="container-fluid m" id="zt">
+        <div class="container m0 bod">
+            <div id="allList">
+                {% block main %}{% endblock %}
+            </div>
+            <div class="posts-nav-wrap" style="margin-bottom:30px">
+                <ul class="posts-nav">
+                    <li class="next"><a href="jq1-jq" class="next">←</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--end主体-->
+    <script src="public/js/jquery.min.js"></script>
+    <script src="public/js/bootstrap.min.js"></script>
+    <script src="public/js/widget.js"></script>
+    <script src="public/js/index.js"></script>
+    <nav class="foot navbar-inverse navbar-fixed-bottom">
+        <ul class="list-inline">
+            <li class="footer-ss"><a href="copyright.aspx">版权声明</a></li>
+            <li class="footer-ss"><a href="feedback.aspx">在线反馈</a></li>
+            <li class="footer-ss">帮助中心</li>
+            <li>Copyright © 宋加超</li>
+        </ul>
+        <ul class="list-inline text-right">
+            <li>
+
+            </li>
+        </ul>
+    </nav>
+</body>
+
+</html>

@@ -25,8 +25,7 @@ router.get('/', function(req, res, next) {
         where.example = data.example;
     }
 
-    Content.where(where).count().then(function(count) {
-
+    Examples.where(where).count().then(function(count) {
         data.count = count;
         //计算总页数
         data.pages = Math.ceil(data.count / data.limit);
@@ -37,14 +36,16 @@ router.get('/', function(req, res, next) {
 
         var skip = (data.page - 1) * data.limit;
 
-        return Content.where(where).find().limit(data.limit).skip(skip).populate(['category', 'user']).sort({
-            addTime: -1
+        Examples.where(where).find().limit(data.limit).skip(skip).then(function(examples) {
+            res.render('index', {
+                examples: examples,
+                count: data.count,
+                pages: data.pages,
+                limit: data.limit,
+                page: data.page
+            });
         });
-
-    }).then(function(contents) {
-        data.contents = contents;
-        res.render('main/index', data);
-    })
+    });
 });
 
 module.exports = router;

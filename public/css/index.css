@@ -1,0 +1,139 @@
+.m,
+.mn {
+    margin-top: 455px
+}
+
+.banner {
+    height: 404px
+}
+
+.nav-bg,
+.nav-bgn {
+    top: 455px
+}
+
+.banseo {
+    top: 126px
+}
+
+.ifbk {
+    height: 172px;
+    overflow: hidden;
+}
+
+.ifbk iframe {
+    width: 200%;
+    height: 200%;
+    background: white;
+    border: 0;
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transform: scale(0.5);
+    -webkit-transform-origin: top left;
+    -moz-transform: scale(0.5);
+    -moz-transform-origin: top left;
+    -ms-transform: scale(0.5);
+    -ms-transform-origin: top left;
+    -o-transform: scale(0.5);
+    -o-transform-origin: top left;
+    transform: scale(0.5);
+    transform-origin: top left;
+}
+
+.posts-nav .next a {
+    background: #ffffff url(../img/ico-pagination-arrow-next.png) no-repeat center;
+    width: 144px;
+    height: 53px;
+    line-height: 53px;
+}
+
+.navbar-inverse {
+    background-color: #000;
+    border-bottom: 1px solid #212121;
+}
+
+.zhe {
+    color: #262626;
+    font-family: Vrinda
+}
+
+.wh {
+    height: 10px
+}
+
+.banseo2 {
+    width: 728px;
+    height: 15px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    position: absolute;
+    top: 190px;
+    border-radius: 15px;
+    z-index: 99;
+}
+
+.banseo {
+    width: 728px;
+}
+
+.bantxt {
+    width: 100%;
+    height: 60px;
+    opacity: 1;
+    background-color: #eceff1;
+    border-radius: 5px;
+    border: 0px;
+    padding-left: 50px;
+    color: #000
+}
+
+.banbutt {
+    height: 60px;
+    width: 173px;
+    background-color: #ec4d1c;
+    border: 0px;
+    color: #fff;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    transition: all .7s ease 0s;
+    font-size: 15px;
+    background: -webkit-linear-gradient(top, #f4511e 0, #d84315 100%);
+    background: linear-gradient(to bottom, #f4511e 0, #d84315 100%);
+}
+
+.banbutt:hover {
+    background-color: #ed3800;
+    background: -webkit-linear-gradient(top, #f03900 0, #bb2c00 100%);
+    background: linear-gradient(to bottom, #f03900 0, #bb2c00 100%);
+}
+
+.seoicn {
+    position: absolute;
+    left: 20px;
+    bottom: -64px;
+    color: #b0bec5;
+    font-size: 18px
+}
+
+.banjz {
+    padding-bottom: 20px;
+    color: #A1A4A7;
+    font-size: 25px;
+}
+
+input::-webkit-input-placeholder {
+    color: #b0bec5;
+    opacity: 1;
+}
+
+@media screen and (max-width:770px) {
+    .banseo {
+        width: 85%;
+    }
+    .banbutt {
+        width: 123px
+    }
+}

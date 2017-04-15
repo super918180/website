@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Examples = require('../models/Example');
+var Details = require('../models/Details');
 var data;
 //出来通用数据
 router.use(function(req, res, next) {
@@ -17,7 +18,7 @@ router.get('/', function(req, res, next) {
     data.examples = req.query.examples || '';
     data.count = 0;
     data.page = Number(req.query.page || 1);
-    data.limit = 10;
+    data.limit = 12;
     data.pages = 0;
 
     var where = {};
@@ -47,5 +48,27 @@ router.get('/', function(req, res, next) {
         });
     });
 });
+//详情页
+router.get('/details', function(req, res, next) {
+    var link = parseInt(req.query.id, 10);
+    Examples.count().then(function(count) {
+        Examples.findOne({ "link": link }).then(function(example) {
+            Details.findOne({ "link": link }).then(function(detail) {
+                Examples.findOne({ "link": link - 1 }).then(function(pre) {
+                    Examples.findOne({ "link": link + 1 }).then(function(next) {
+                        res.render('details', {
+                            example: example,
+                            detail: detail,
+                            pre: pre,
+                            next: next
+                        });
+                        console.log(pre);
+                        console.log(next);
+                    });
+                });
+            });
+        });
+    });
 
+});
 module.exports = router;

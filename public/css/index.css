@@ -42,13 +42,6 @@
     transform-origin: top left;
 }
 
-.posts-nav .next a {
-    background: #ffffff url(../img/ico-pagination-arrow-next.png) no-repeat center;
-    width: 144px;
-    height: 53px;
-    line-height: 53px;
-}
-
 .navbar-inverse {
     background-color: #000;
     border-bottom: 1px solid #212121;

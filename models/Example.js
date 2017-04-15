@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var examplesSchema = new mongoose.Schema({
-    link: String,
+    link: Number,
     img: String,
     title: String,
     des: String,

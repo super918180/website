@@ -32,4 +32,8 @@ $(function() {
             }
         }
     });
+    //给图例加背景
+    $('#allList .exampleBg').each(function() {
+        $(this).css('background', '#' + Math.floor(Math.random() * 16777215).toString(16));
+    });
 });

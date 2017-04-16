@@ -7,7 +7,7 @@
 
             </div>
             <div class="project-header">
-                <h1>{{example.title}}</h1>
+                <h1 id="project-title">{{example.title}}</h1>
                 <p>所属分类：{{example.tag.toString()}}</p>
                 <div class="row pd10">
                     <div class="f">
@@ -33,8 +33,8 @@
 
             </div>
             <div class="project-content inad">
-                <img src={{example.img}} class="thumbile" alt={{example.title}}>
-                <img src="http://www.jq22.com/img/8.png" class="thumbile" alt="ie兼容8" />
+                <img id="project-img" src={{example.img}} class="thumbile" alt={{example.title}}>
+                <img src="public/img/8.png" class="thumbile" alt="ie兼容8" />
                 <div class="row text-center" style="margin-bottom:30px;margin-top: 10px;">
                     <!-- zsy -->
                     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2935286260943234" data-ad-slot="2014829100" data-ad-format="auto"></ins>
@@ -46,7 +46,7 @@
                     <a href={{example.download}} class="btn btn btn-danger" target="_blank"><i class="fa fa-cloud-download"></i> &nbsp;立即下载</a>
                 </div>
 
-                <div class="alert cjms" role="alert">{{example.des}}</div>
+                <div class="alert cjms" role="alert" id="project-des">{{example.des}}</div>
                 <ul class="x-top" style="padding-left:0px">
                     <div class="fy f zhs"><span class="jg35">PREVIOUS:</span></div>
                     <div class="fy f txtRight zhs"><span class="jg352">NEXT:</span></div>
@@ -69,10 +69,10 @@
 <script>
     window._bd_share_config = {
         common: {
-            bdText: 'jQuery滚动视差插件Parallax scrolly',
-            bdDesc: '超简单易用的jQuery视差插件Parallax scrolly',
-            bdUrl: 'http://www.jq22.com/jquery-info13449',
-            bdPic: 'http://assets.jq22.com/plugin/2017-04-14-15-55-42.png'
+            bdText: document.getElementById("project-title").innerHTML,
+            bdDesc: document.getElementById("project-des").innerHTML,
+            bdUrl: window.location.href,
+            bdPic: window.location.host + "/" + document.getElementById("project-img").getAttribute("src")
         },
         share: [{
             "bdSize": 24

@@ -62,8 +62,6 @@ router.get('/details', function(req, res, next) {
                             pre: pre,
                             next: next
                         });
-                        console.log(pre);
-                        console.log(next);
                     });
                 });
             });

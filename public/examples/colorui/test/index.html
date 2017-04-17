@@ -11,6 +11,27 @@
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/colourui.css" rel="stylesheet">
+    <style>
+        .bs-example {
+            position: relative;
+            padding: 45px 15px 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px 4px 0 0;
+        }
+        
+        .bs-example::after {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #959595;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            content: "实例：";
+        }
+    </style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,7 +43,19 @@
 
 <body>
     <div class="col-md-8">
-        <div id="text1"></div>
+        <div>
+            <h2 id="labels" class="page-header">输入框组件</h2>
+            <p>输入框组件，提供强大的校验功能</p>
+            <div class="bs-example" data-example-id="labels-in-headings">
+                <div id="text1"></div>
+            </div>
+        </div>
+
+
+
+
+
+
         <div id="droplist1"></div>
         <div id="droplist2"></div>
         <div id="radio1"></div>

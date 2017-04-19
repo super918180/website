@@ -7,13 +7,13 @@ $(function() {
         //长度
         length: '2-5',
         //描述输入字段
-        placeholder: null,
+        placeholder: "该值不能为空，长度为2-5",
         //是否必填
         isRequired: false,
         //反馈图标（feedback icon）只能使用在文本输入框 <input class="form-control"> 元素上。
         hasFeedback: true,
         // 左侧方块图标
-        leftAddon: '@',
+        leftAddon: "￥",
         // 右侧方块图标
         rightAddon: null
     });
@@ -65,15 +65,17 @@ $(function() {
     });
     var radio1 = $("#radio1").data('CreateRadio');
     console.log(radio1.getValue());
-    radio1.setDisabled([0, 2]);
-
-
+    radio1.setDisabled([2]);
+    //多选框
     $("#checkbox1").CreateCheckbox({
         inline: false,
         group: 'checkgroup',
-        data: [{ title: 'Action', value: 'Action' },
-            { title: 'Another action', value: 'Another action' },
-            { title: 'Something else here', value: 'Something else here' }
+        data: [{ title: 'Html', value: 'Html' },
+            { title: 'Css', value: 'Css' },
+            { title: 'JavaScript', value: 'JavaScript' },
+            { title: 'Angular.js', value: 'Angular.js' },
+            { title: 'React.js', value: 'React.js' },
+            { title: 'Node.js', value: 'Node.js' }
         ],
         selected: [1, 2],
         changeFunc: function() {
@@ -81,8 +83,25 @@ $(function() {
         }
     });
     var checkboxObj = $("#checkbox1").data('CreateCheckbox');
-    checkboxObj.setDisabled([1]);
-    console.log(checkboxObj.getValue());
+    $('#checkbox1_selectAll').click(function() {
+        checkboxObj.seclectAll();
+    });
+    $('#checkbox1_seclectNone').click(function() {
+        checkboxObj.seclectNone();
+    });
+    $('#checkbox1_selectInverse').click(function() {
+        checkboxObj.selectInverse();
+    });
+    $('#checkbox1_getValue').click(function() {
+        alert(checkboxObj.getValue());
+    });
+    $('#checkbox1_setDisabled').click(function() {
+        checkboxObj.setDisabled([2, 5]);
+    });
+    $('#checkbox1_removeDisabled').click(function() {
+        checkboxObj.removeDisabled([2, 5]);
+    });
+
 
     $("#switch1").CreateSwitch({
         status: "on",
@@ -93,7 +112,7 @@ $(function() {
     var switchObj = $("#switch1").data('CreateSwitch');
     switchObj.setValue('off');
 
-    $("#button1").CreateButton({
+    $("#button0").CreateButton({
         class: 'success',
         title: "Click Me",
         //点击的时候调用
@@ -101,17 +120,20 @@ $(function() {
             console.log(1);
         }
     });
-    var buttonObj = $("#button1").data('CreateButton');
+    var buttonObj = $("#button0").data('CreateButton');
     buttonObj.setDisabled();
-
-    $("#button2").CreateButton({
-        class: 'info',
-        title: "Click Me",
-        //点击的时候调用
-        ckickFunc: function() {
-            console.log(1);
-        }
-    });
+    //按钮
+    var buttonArr = ["default", "primary", "success", "info", "warning", "danger"];
+    for (var i = 0; i < buttonArr.length; i++) {
+        $("#button" + (i + 1)).CreateButton({
+            class: buttonArr[i],
+            title: "按钮" + (i + 1),
+            //点击的时候调用
+            ckickFunc: function() {
+                console.log(i + 1);
+            }
+        });
+    }
 
     $("#tab1").CreateTab({
         type: 'tab',
@@ -193,26 +215,77 @@ $(function() {
         progress.setValue(a);
     }, 1000);
 
-    // var modal1 = $.Modal({
-    //     title: '请确认',
-    //     html: 'One fine body…',
-    //     width: '400px',
-    //     confirm: {
-    //         title: '下一步',
-    //         clickFunc: function() {
-    //             console.log('确定');
-    //         }
-    //     }
-    // });
-    // modal1.show();
-
-    $.ShowTip({
-        //confirm 和 feedback
-        type: 'feedback',
+    var tipArr = ['', 'success', 'warning', 'error'];
+    var tBtnArr = ['primary', 'success', 'warning', 'danger'];
+    $(".tipArr").each(function(index) {
+        var id = $(this).attr('id');
+        $('#' + id).CreateButton({
+            class: tBtnArr[index],
+            title: "反馈提示框" + (index + 1),
+            //点击的时候调用
+            ckickFunc: function() {
+                $.ShowTip({
+                    //confirm 和 feedback
+                    type: 'feedback',
+                    class: tipArr[index],
+                    title: '听见啥？',
+                    detail: '我仿佛听见有人在说我帅？',
+                    cancel: { title: '取消', clickFunc: null },
+                    confirm: { title: '确定', clickFunc: null }
+                });
+            }
+        });
+    });
+    $('#tip5').CreateButton({
         class: 'info',
-        title: '听见啥？',
-        detail: '我仿佛听见有人在说我帅？',
-        cancel: { title: '取消', clickFunc: null },
-        confirm: { title: '确定', clickFunc: null }
+        title: "选择提示框",
+        //点击的时候调用
+        ckickFunc: function() {
+            $.ShowTip({
+                //confirm 和 feedback
+                type: 'confirm',
+                class: '',
+                title: '听见啥？',
+                detail: '我仿佛听见有人在说我帅？',
+                cancel: { title: '确实听见了', clickFunc: null },
+                confirm: {
+                    title: '没有听见',
+                    clickFunc: function() {
+                        $.ShowTip({
+                            //confirm 和 feedback
+                            type: 'confirm',
+                            class: 'error',
+                            title: '没有听见？',
+                            detail: '难道您真的没有听见吗？',
+                            cancel: { title: '真的没有听见', clickFunc: null },
+                            confirm: {
+                                title: '终于听见了',
+                                clickFunc: null
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    });
+
+    $("#modelBtn").CreateButton({
+        class: 'success',
+        title: "模态框",
+        //点击的时候调用
+        ckickFunc: function() {
+            var modal1 = $.Modal({
+                title: '请确认',
+                html: 'One fine body…',
+                width: '400px',
+                confirm: {
+                    title: '下一步',
+                    clickFunc: function() {
+                        console.log('确定');
+                    }
+                }
+            });
+            modal1.show();
+        }
     });
 });

@@ -122,8 +122,9 @@
             },
             //设置输入框状态，正确，错误，失去焦点，获得焦点
             setStatus: function(status) {
-                this.inputContainer.removeClass('has-success,has-error,has-warning');
-                this.feedbackSpan.removeClass('glyphicon-ok,glyphicon-remove,glyphicon-warning-sign');
+                debugger;
+                this.inputContainer.removeClass('has-success has-error has-warning');
+                this.feedbackSpan.removeClass('glyphicon-ok glyphicon-remove glyphicon-warning-sign');
                 if (status === "right") {
                     this.inputContainer.addClass('has-success');
                     this.feedbackSpan.addClass('glyphicon-ok');
@@ -381,7 +382,7 @@
                     }
                 }
             },
-            removeDisabled: function() {
+            removeDisabled: function(indexArr) {
                 for (var i = 0; i < indexArr.length; i++) {
                     if (this.inline) {
                         this.checkboxAll.eq(indexArr[i]).removeAttr('disabled', 'disabled').parent().removeClass('disabled');
@@ -1393,6 +1394,7 @@
         this.config = {
             //confirm 和 feedback
             type: 'confirm',
+            //success,warning,error,其他
             class: '',
             title: '',
             detail: '',

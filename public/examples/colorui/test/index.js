@@ -1,4 +1,5 @@
 $(function() {
+
     $('#text1').CreateInput({
         // 输入框类型：text、password、datetime、datetime-local、date、month、time、week、number、email、url、search、tel 和 color。
         type: 'text',
@@ -10,14 +11,64 @@ $(function() {
         placeholder: "该值不能为空，长度为2-5",
         //是否必填
         isRequired: false,
-        //反馈图标（feedback icon）只能使用在文本输入框 <input class="form-control"> 元素上。
-        hasFeedback: true,
         // 左侧方块图标
-        leftAddon: "￥",
+        leftAddon: null,
         // 右侧方块图标
         rightAddon: null
     });
     var text1 = $('#text1').data('CreateInput');
+    $("#text1_success").click(function() {
+        text1.setStatus("right");
+    });
+    $("#text1_warning").click(function() {
+        text1.setStatus("warning");
+    });
+    $("#text1_error").click(function() {
+        text1.setStatus("error");
+    });
+    $("#text1_blur").click(function() {
+        text1.setStatus("blur");
+    });
+    $("#text1_disable").click(function() {
+        text1.setDisabled();
+    });
+    $("#text1_enable").click(function() {
+        text1.removeDisabled();
+    });
+    $("#text1_getValue").click(function() {
+        alert(text1.getValue());
+    });
+    $("#text1_setValue").click(function() {
+        var value = prompt('请输入输入框塞入的值：', '梦想总是要有的，万一实现了呢');
+        console.log(value)
+        text1.setValue(value);
+    });
+
+    $('#text2').CreateInput({
+        type: 'text',
+        spec: null,
+        length: 10,
+        placeholder: null,
+        isRequired: false,
+        leftAddon: "￥",
+        rightAddon: ".00"
+    });
+    // 分页组件
+    $("#page1").CreatePages({
+        //一共多少数据
+        total: 2100,
+        //默认每页显示的条数
+        show: 10
+    });
+    $("#page1_create").click(function(e) {
+        e.preventDefault();
+        $("#page1").removeData("CreatePages");
+        $("#page1").empty().CreatePages({
+            total: parseInt($("#page1_totle").val()) || 2100,
+            show: parseInt($("#page1_every").val()) || 10
+        });
+    });
+
     $('#droplist1').CreateDroplist({
         data: [{ title: 'Action', value: '1', selected: true, disabled: false },
             { title: 'Another action', value: '2', selected: false, disabled: true },
@@ -193,13 +244,6 @@ $(function() {
                 console.log(3);
             }
         }]
-    });
-
-    $("#page1").CreatePages({
-        //一共多少数据
-        total: 2100,
-        //默认每页显示的条数
-        show: 10
     });
 
     $("#progress1").CreateProgress({

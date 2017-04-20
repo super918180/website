@@ -38,6 +38,12 @@
             float: left;
             margin-right: 20px;
         }
+        
+        .titleP {
+            color: #959595;
+            font-size: 12px;
+            font-weight: 700;
+        }
     </style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -54,14 +60,44 @@
             <h2 id="labels" class="page-header">输入框组件</h2>
             <p>输入框组件，提供强大的校验功能</p>
             <div class="bs-example" data-example-id="labels-in-headings">
+                <div style="margin-bottom:20px">
+                    <button class="btn btn-default" id="text1_success">状态：正确</button>
+                    <button class="btn btn-default" id="text1_warning">状态：告警</button>
+                    <button class="btn btn-default" id="text1_error">状态：错误</button>
+                    <button class="btn btn-default" id="text1_blur">状态：正常</button>
+                    <button class="btn btn-default" id="text1_disable">置灰</button>
+                    <button class="btn btn-default" id="text1_enable">去置灰</button>
+                    <button class="btn btn-default" id="text1_getValue">获取值</button>
+                    <button class="btn btn-default" id="text1_setValue">塞入值</button>
+                </div>
                 <div id="text1"></div>
+                <p class="titleP">按钮组:</p>
+                <div id="text2"></div>
             </div>
         </div>
-
         <div>
             <h2 id="labels" class="page-header">分页组件</h2>
-            <p>分页组件</p>
+            <p>智能分页组件，能够根据总数目和当前页显示数目，生成正确的分页组件，同时支持任意页码的跳转</p>
             <div class="bs-example" data-example-id="labels-in-headings">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="page1_totle" class="col-sm-3 control-label">当前共有多少条记录：</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" id="page1_totle" placeholder="1000">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="page1_every" class="col-sm-3 control-label">每页展示多少条记录：</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" id="page1_every" placeholder="10">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-10">
+                            <button id="page1_create" class="btn btn-default">生成分页组件</button>
+                        </div>
+                    </div>
+                </form>
                 <div id="page1"></div>
             </div>
         </div>
@@ -98,12 +134,12 @@
             <h2 id="labels" class="page-header">多选按钮</h2>
             <p>多选按钮</p>
             <div class="bs-example" data-example-id="labels-in-headings">
-                <button id="checkbox1_selectAll">全选</button>
-                <button id="checkbox1_seclectNone">全不选</button>
-                <button id="checkbox1_selectInverse">反选</button>
-                <button id="checkbox1_getValue">获取选中值</button>
-                <button id="checkbox1_setDisabled">置灰</button>
-                <button id="checkbox1_removeDisabled">去置灰</button>
+                <button class="btn btn-default" id="checkbox1_selectAll">全选</button>
+                <button class="btn btn-default" id="checkbox1_seclectNone">全不选</button>
+                <button class="btn btn-default" id="checkbox1_selectInverse">反选</button>
+                <button class="btn btn-default" id="checkbox1_getValue">获取选中值</button>
+                <button class="btn btn-default" id="checkbox1_setDisabled">置灰</button>
+                <button class="btn btn-default" id="checkbox1_removeDisabled">去置灰</button>
                 <div id="checkbox1"></div>
             </div>
         </div>

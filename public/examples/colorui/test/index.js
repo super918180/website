@@ -1,5 +1,4 @@
 $(function() {
-
     $('#text1').CreateInput({
         // 输入框类型：text、password、datetime、datetime-local、date、month、time、week、number、email、url、search、tel 和 color。
         type: 'text',

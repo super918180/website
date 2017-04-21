@@ -67,17 +67,20 @@
     </div>
 </div>
 <script>
-    window._bd_share_config = {
-        common: {
-            bdText: document.getElementById("project-title").innerHTML,
-            bdDesc: document.getElementById("project-des").innerHTML,
-            bdUrl: window.location.href,
-            bdPic: window.location.host + "/" + document.getElementById("project-img").getAttribute("src")
-        },
-        share: [{
-            "bdSize": 24
-        }],
-    }
-    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~(-new Date() / 36e5)];
+    $(function() {
+        window._bd_share_config = {
+            common: {
+                bdText: document.getElementById("project-title").innerHTML,
+                bdDesc: document.getElementById("project-des").innerHTML,
+                bdUrl: window.location.href,
+                bdPic: window.location.host + "/" + document.getElementById("project-img").getAttribute("src")
+            },
+            share: [{
+                "bdSize": 24
+            }],
+        }
+        with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~(-new Date() / 36e5)];
+        $(window).scrollTop(400);
+    });
 </script>
 {% endblock%}

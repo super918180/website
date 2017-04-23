@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="webUI.css">
+    <style type="text/css">
+        #circular_box {
+            margin: 10px auto;
+            position: relative;
+        }
+        
+        #circular_box div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            -webkit-transition: all .2s ease-in-out;
+            -moz-transition: all .2s ease-in-out;
+        }
+    </style>
+    <script src="jquery-2.0.3.js"></script>
+    <script src="circularLoading.js"></script>
+</head>
+
+<body>
+    <div id="loading"></div>
+</body>
+<script>
+    $(function() {
+        $(function() {
+            //loading效果
+            $("#loading").CircularLoading({
+                // 圆大小
+                size: '120',
+                // 环大小
+                border: '20',
+                // 环背景
+                bgColor: '#CCC',
+                // 进度背景
+                frontColor: '#008000',
+                // 进度条字体大小
+                fontSize: '40px'
+            });
+            var number = 0;
+            setInterval(function() {
+                number = number === 99 ? 0 : number + 1;
+                $("#loading").data('num', number).CircularLoading('numChange');
+            }, 500);
+        });
+    })
+</script>
+
+</html>

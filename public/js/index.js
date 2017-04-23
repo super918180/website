@@ -3,12 +3,14 @@ $(window).scroll(function() {
     if ($(window).scrollTop() >= 455) {
         $(".nav-bg").css("top", 50);
         $(".nav-bg").css("position", "fixed");
-        $('#menu_wrap').addClass('menuFixed')
+        $('#menu_wrap').addClass('menuFixed');
+        $("#search-header").removeClass("hidden");
     }
     if ($(window).scrollTop() < 455) {
         $(".nav-bg").css("position", "relative");
         $(".nav-bg").css("top", 455);
-        $('#menu_wrap').removeClass('menuFixed')
+        $('#menu_wrap').removeClass('menuFixed');
+        $("#search-header").addClass("hidden");
     }
 });
 

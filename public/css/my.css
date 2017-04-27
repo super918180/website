@@ -298,6 +298,12 @@ body {
     top: 255px;
 }
 
+@media screen and (max-width: 590px) {
+    .nav-bg {
+        height: 100px;
+    }
+}
+
 .nav-bgn {
     top: 50px;
 }
@@ -318,7 +324,6 @@ body {
     position: relative;
     text-align: left;
     padding-left: 25px;
-    padding-bottom: 20px;
 }
 
 .menuFixed {
@@ -370,6 +375,11 @@ body {
 .nav-zibg {
     border-bottom: 2px solid #007AFB;
     padding-bottom: 13px;
+}
+
+.nav-active span {
+    background-color: #007AFB;
+    color: #FFF;
 }
 
 .search-wrap {

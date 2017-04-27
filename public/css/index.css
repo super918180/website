@@ -86,21 +86,13 @@
 .banbutt {
     height: 60px;
     width: 173px;
-    background-color: #ec4d1c;
+    background-color: #007AFB;
     border: 0px;
     color: #fff;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     transition: all .7s ease 0s;
     font-size: 15px;
-    background: -webkit-linear-gradient(top, #f4511e 0, #d84315 100%);
-    background: linear-gradient(to bottom, #f4511e 0, #d84315 100%);
-}
-
-.banbutt:hover {
-    background-color: #ed3800;
-    background: -webkit-linear-gradient(top, #f03900 0, #bb2c00 100%);
-    background: linear-gradient(to bottom, #f03900 0, #bb2c00 100%);
 }
 
 .seoicn {
@@ -134,13 +126,15 @@ input::-webkit-input-placeholder {
 #searchtxt-header {
     background-color: rgba(0, 0, 0, 0);
     color: #fff;
-    border-color: #ec4d1c;
+    border-color: #007AFB;
+    opacity: 0.7;
 }
 
 #seobut-header {
-    background-color: #ec4d1c;
+    background-color: #007AFB;
     border: 0px;
     color: #fff;
+    opacity: 0.7;
 }
 
 #jiawo {

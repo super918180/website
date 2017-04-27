@@ -15,9 +15,15 @@ $(function() {
             $("#search-header").addClass("hidden");
         }
     });
+
     $(".nzz").hover(function() {
         $(".nzz").removeClass("nav-zibg");
         $(this).addClass("nav-zibg");
+    }).each(function() {
+        if ($(this).attr('href') == "/" + window.location.search) {
+            $(".nzz").removeClass("nav-active");
+            $(this).addClass("nav-active");
+        }
     });
     // 搜索框事件
     $("#seobut").click(function() {

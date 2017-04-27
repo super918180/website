@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var Examples = require('../models/Example');
-var Details = require('../models/Details');
 var data;
 //出来通用数据
 router.use(function(req, res, next) {
@@ -53,15 +52,12 @@ router.get('/details', function(req, res, next) {
     var link = parseInt(req.query.id, 10);
     Examples.count().then(function(count) {
         Examples.findOne({ "link": link }).then(function(example) {
-            Details.findOne({ "link": link }).then(function(detail) {
-                Examples.findOne({ "link": link - 1 }).then(function(pre) {
-                    Examples.findOne({ "link": link + 1 }).then(function(next) {
-                        res.render('details', {
-                            example: example,
-                            detail: detail,
-                            pre: pre,
-                            next: next
-                        });
+            Examples.findOne({ "link": link - 1 }).then(function(pre) {
+                Examples.findOne({ "link": link + 1 }).then(function(next) {
+                    res.render('details', {
+                        example: example,
+                        pre: pre,
+                        next: next
                     });
                 });
             });

@@ -7,7 +7,7 @@ var examplesSchema = new mongoose.Schema({
     github: String,
     title: String,
     des: String,
-    tag: Array,
+    tag: String,
     see: Number,
     love: Number
 });

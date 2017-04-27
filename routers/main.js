@@ -19,13 +19,21 @@ router.get('/', function(req, res, next) {
     data.page = Number(req.query.page || 1);
     data.limit = 12;
     data.pages = 0;
+    data.category = req.query.category || 'all';
 
     var where = {};
     if (data.example) {
         where.example = data.example;
     }
-
-    Examples.where(where).count().then(function(count) {
+    var rule;
+    if (data.category == 'query') {
+        rule = { '$or': [{ tag: eval('/' + req.query.search + '/i'), des: eval('/' + req.query.search + '/i') }] }
+    } else if (data.category == 'all') {
+        rule = {}
+    } else {
+        rule = { tag: eval('/' + req.query.category + '/i') }
+    }
+    Examples.where(where).count(rule).then(function(count) {
         data.count = count;
         //计算总页数
         data.pages = Math.ceil(data.count / data.limit);
@@ -36,8 +44,9 @@ router.get('/', function(req, res, next) {
 
         var skip = (data.page - 1) * data.limit;
 
-        Examples.where(where).find().limit(data.limit).skip(skip).then(function(examples) {
+        Examples.where(where).find(rule).limit(data.limit).skip(skip).then(function(examples) {
             res.render('index', {
+                category: data.category,
                 examples: examples,
                 count: data.count,
                 pages: data.pages,

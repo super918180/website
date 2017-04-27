@@ -15,12 +15,15 @@
     {% endfor %}
 </div>
 <div class="posts-nav-wrap">
+    {% if pages !=0%}
     <ul class="posts-nav">
         {% if page != 1 %}
-        <li class="previous"><a href="?page={{page-1}}" class="previous">←</a></li>
+        <li class="previous"><a href="?category={{category}}&page={{page-1}}" class="previous">←</a></li>
         {% endif%} {% if page != pages %}
-        <li class="next"><a href="?page={{page+1}}" class="next">←</a></li>
+        <li class="next"><a href="?category={{category}}&page={{page+1}}" class="next">←</a></li>
         {% endif%}
     </ul>
+    {% else %}
+    <span>暂无数据</span> {% endif%}
 </div>
 {% endblock%}

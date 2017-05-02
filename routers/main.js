@@ -27,7 +27,7 @@ router.get('/', function(req, res, next) {
     }
     var rule;
     if (data.category == 'query') {
-        rule = { '$or': [{ tag: eval('/' + req.query.search + '/i'), des: eval('/' + req.query.search + '/i') }] }
+        rule = { '$or': [{ tag: eval('/' + req.query.search + '/i') }, { des: eval('/' + req.query.search + '/i') }] }
     } else if (data.category == 'all') {
         rule = {}
     } else {

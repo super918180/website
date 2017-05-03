@@ -1,16 +1,16 @@
-var lineChar = function (options) {
+var lineChar = function(options) {
     this.settings = options || {};
     this._init();
 }
 lineChar.prototype = {
     // 初始化插件
-    _init: function () {
+    _init: function() {
         this.data = this.settings.data;
         this.id = this.settings.id;
         this._initCanvasBg();
     },
     //绘制canvas背景
-    _initCanvasBg: function () {
+    _initCanvasBg: function() {
         //绘制网格线
         var canvas = document.getElementById(this.id);
         canvas.style.position = "absolute";
@@ -48,9 +48,9 @@ lineChar.prototype = {
         this._initDataLine(context2, linePosArr, w, h);
 
     },
-    _initDataLine: function (context, data, w, h) {
+    _initDataLine: function(context, data, w, h) {
         var step = 0;
-        var dataInterval = setInterval(function () {
+        var dataInterval = setInterval(function() {
             step += 0.02;
             if (step <= 1) {
                 context.clearRect(0, 0, w, h);

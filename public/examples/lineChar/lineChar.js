@@ -1,86 +1,135 @@
-var lineChar = function(options) {
-    this.settings = options || {};
-    this._init();
-}
-lineChar.prototype = {
+class lineChar {
+    // 入口函数
+    constructor(options) {
+        this.settings = options || {};
+        // 初始化
+        this._init();
+    }
     // 初始化插件
-    _init: function() {
-        this.data = this.settings.data;
+    _init() {
         this.id = this.settings.id;
-        this._initCanvasBg();
-    },
-    //绘制canvas背景
-    _initCanvasBg: function() {
-        //绘制网格线
-        var canvas = document.getElementById(this.id);
+        this.data = this.settings.data;
+        this.element = document.getElementById(this.id);
+        // x坐标刻度
+        this.xText = this.settings.xText;
+        // y坐标刻度
+        this.yText = this.settings.yText;
+        // 宽度
+        this.w = this.element.offsetWidth;
+        // 高度
+        this.h = this.element.offsetHeight;
+        // 上右下左离顶部的距离
+        this.pos = {
+            t: 40,
+            r: 20,
+            b: 40,
+            l: 40
+        };
+        this._createGrid();
+    }
+    // 创建一个canvas公共方法
+    _createCanvas(w, h) {
+        var canvas = document.createElement("canvas");
         canvas.style.position = "absolute";
-        var context = canvas.getContext('2d');
+        canvas.width = w;
+        canvas.height = h;
+        return canvas;
+    }
+    // 绘制canvas背景
+    _createGrid() {
+        // 绘制网格线
+        var canvas = this._createCanvas(this.w, this.h);
+        var context = canvas.getContext("2d");
         var linePosArr = [];
-        var w = canvas.width;
-        var h = canvas.height;
         // 画横线
         context.beginPath();
+        var gridH = this.h - this.pos.t - this.pos.b;
+        var gridW = this.w - this.pos.l - this.pos.r;
+        // 横向分成几份
         var h_step = 10;
         for (var i = 0; i < h_step + 1; i++) {
-            context.moveTo(0, i * h / h_step);
-            context.lineTo(w, i * h / h_step);
+            // 计算后的高度，离顶部40px
+            var currH = i * gridH / h_step + this.pos.t;
+            context.moveTo(this.pos.t, currH);
+            context.lineTo(this.w - this.pos.r, currH);
+            //绘制y轴刻度
+            context.textBaseline = "middle";
+            context.textAlign = "right";
+            context.fillText(this.yText[this.yText.length - i - 1], this.pos.l - 10, currH);
         }
         // 画竖线
         var w_step = this.data.length - 1;
         for (var i = 0; i < w_step + 1; i++) {
-            context.moveTo(w / w_step * i, 0);
-            context.lineTo(w / w_step * i, h);
-            linePosArr.push([w / w_step * i, (1 - this.data[i]) * h]);
+            // 计算后的宽度，离左边40px
+            var currW = gridW / w_step * i + this.pos.l;
+            context.moveTo(currW, this.pos.t);
+            context.lineTo(currW, this.h - this.pos.b);
+            linePosArr.push([currW, (1 - this.data[i]) * gridH + this.pos.t]);
+            //绘制x轴刻度
+            context.textBaseline = "top";
+            context.textAlign = "center";
+            debugger;
+            context.fillText(this.xText[i], currW, this.h - this.pos.b + 10);
         }
-        context.strokeStyle = 'lightgrey';
+        context.strokeStyle = "lightgrey";
         context.stroke();
         context.closePath();
-        //绘制动态的点和线
-        var canvas2 = document.createElement('canvas');
-        var context2 = canvas2.getContext('2d');
-        canvas2.width = w;
-        canvas2.height = h;
-        canvas2.style.position = "absolute";
+        this.element.appendChild(canvas);
+        //绘制曲线
+        this._createLine(linePosArr, this.w, this.h);
+    }
+    // 绘制canvas背景
+    _createCoordinate() {
+        var canvas = this._createCanvas(this.w, this.h);
+    }
+    // 创建折线和点
+    _createLine(data, w, h) {
+        // 绘制动态的点和线
+        var canvas = this._createCanvas(w, h);
+        var context = canvas.getContext("2d");
         // 插入到页面中
-        var parentNode = document.getElementById(this.id).parentNode;
-        parentNode.style.position = "relative";
-        parentNode.appendChild(canvas2);
-        this._initDataLine(context2, linePosArr, w, h);
-
-    },
-    _initDataLine: function(context, data, w, h) {
+        this.element.appendChild(canvas);
         var step = 0;
+        var _this = this;
         var dataInterval = setInterval(function() {
-            step += 0.02;
+            step += 0.05;
             if (step <= 1) {
                 context.clearRect(0, 0, w, h);
-                //画圆点
+                // 画圆点
+                var currH = h - _this.pos.t - _this.pos.b;
                 for (var i = 0; i < data.length; i++) {
                     context.beginPath();
-                    context.arc(data[i][0], h - (h - data[i][1]) * step, 5, 0, 2 * Math.PI);
+                    context.arc(data[i][0], currH - (currH - data[i][1]) * step, 5, 0, 2 * Math.PI);
                     context.closePath();
-                    context.fillStyle = 'rgba(255, 0, 0, 0.6)';
+                    context.fillStyle = "rgba(255, 0, 0, 0.6)";
                     context.fill();
                 }
-                //画折线
-                context.moveTo(0, h - (h - data[0][1]) * step);
+                // 画折线
+                context.moveTo(_this.pos.l, currH - (currH - data[0][1]) * step);
                 context.lineWidth = 2;
                 context.strokeStyle = "rgba(255, 0, 0, 0.6)";
                 for (var i = 0; i < data.length - 1; i++) {
-                    context.lineTo(data[i + 1][0], h - (h - data[i + 1][1]) * step);
+                    context.lineTo(data[i + 1][0], currH - (currH - data[i + 1][1]) * step);
                 }
                 context.stroke();
                 context.strokeStyle = "rgba(255, 0, 0, 0)";
-                context.lineTo(w, h);
-                context.lineTo(0, h);
-                context.lineTo(0, h - (h - data[0][1]) * step);
+                context.lineTo(w - _this.pos.r, h - _this.pos.b);
+                context.lineTo(_this.pos.l, h - _this.pos.b);
+                context.lineTo(_this.pos.l, currH - (currH - data[0][1]) * step);
                 context.stroke();
                 context.fillStyle = "rgba(255, 0, 0, 0.2)";
                 context.fill();
-                document.insert
+                document.insert;
             } else {
                 clearInterval(dataInterval);
             }
-        }, 50);
+        }, 20);
     }
-};
+    updata(options) {
+        this.element.innerHTML = "";
+        this.settings.xText = options.xText;
+        this.settings.yText = options.yText;
+        this.settings.data = options.data;
+        this._init();
+    }
+}

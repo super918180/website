@@ -6,19 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>折线图</title>
+    <style>
+        #canvas {
+            width: 500px;
+            height: 500px;
+        }
+    </style>
     <script src="lineChar.js"></script>
 </head>
 
 <body>
-    <canvas id="canvas" width="500" height="500"></canvas>
+    <div id="canvas"></div>
 </body>
 <script>
-    < script >
-        var linChar1 = new lineChar({
-            id: 'canvas',
-            data: [0.4, 0.15, 0.2, 0.1, 0.25]
+    var linChar1 = new lineChar({
+        id: 'canvas',
+        xText: ["1", "2", "3", "4", "5"],
+        yText: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+        data: [0.4, 0.15, 0.2, 0.1, 0.25]
+    });
+    setInterval(function () {
+        var date = new Date();
+        h = date.getHours();
+        m = date.getMinutes();
+        newXText = [];
+        for (var i = 0; i < 5; i++) {
+            newXText.push(h + ":" + (m - 4 + i));
+        }
+        linChar1.updata({
+            xText: newXText,
+            yText: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+            data: [Math.random(), Math.random(), Math.random(), Math.random(), Math.random()]
         });
-</script>
+    }, 2000)
 </script>
 
 </html>

@@ -12,8 +12,10 @@ class lineChar {
         this.element = document.getElementById(this.id);
         // x坐标刻度
         this.xText = this.settings.xText;
+        //y范围
+        this.yScore = this.settings.yScore;
         // y坐标刻度
-        this.yText = this.settings.yText;
+        this.yText = this._countYText();
         // 宽度
         this.w = this.element.offsetWidth;
         // 高度
@@ -25,7 +27,19 @@ class lineChar {
             b: 40,
             l: 40
         };
+        //动画的步长
+        this.step = this.step || 0;
         this._createGrid();
+    }
+    // 计算y刻度
+    _countYText() {
+        var yArr = [];
+        var max = this.yScore.min;
+        while (max <= this.yScore.max + this.yScore.step) {
+            yArr.push(max);
+            max += this.yScore.step;
+        }
+        return yArr;
     }
     // 创建一个canvas公共方法
     _createCanvas(w, h) {
@@ -46,7 +60,7 @@ class lineChar {
         var gridH = this.h - this.pos.t - this.pos.b;
         var gridW = this.w - this.pos.l - this.pos.r;
         // 横向分成几份
-        var h_step = 10;
+        var h_step = this.yText.length - 1;
         for (var i = 0; i < h_step + 1; i++) {
             // 计算后的高度，离顶部40px
             var currH = i * gridH / h_step + this.pos.t;
@@ -64,11 +78,11 @@ class lineChar {
             var currW = gridW / w_step * i + this.pos.l;
             context.moveTo(currW, this.pos.t);
             context.lineTo(currW, this.h - this.pos.b);
-            linePosArr.push([currW, (1 - this.data[i]) * gridH + this.pos.t]);
+            var currRate = (this.data[i] - this.yScore.min) / (this.yText[this.yText.length - 1] - this.yScore.min);
+            linePosArr.push([currW, (1 - currRate) * gridH + this.pos.t]);
             //绘制x轴刻度
             context.textBaseline = "top";
             context.textAlign = "center";
-            debugger;
             context.fillText(this.xText[i], currW, this.h - this.pos.b + 10);
         }
         context.strokeStyle = "lightgrey";
@@ -89,10 +103,9 @@ class lineChar {
         var context = canvas.getContext("2d");
         // 插入到页面中
         this.element.appendChild(canvas);
-        var step = 0;
         var _this = this;
+        var step = _this.step;
         var dataInterval = setInterval(function() {
-            step += 0.05;
             if (step <= 1) {
                 context.clearRect(0, 0, w, h);
                 // 画圆点
@@ -101,35 +114,51 @@ class lineChar {
                     context.beginPath();
                     context.arc(data[i][0], currH - (currH - data[i][1]) * step, 5, 0, 2 * Math.PI);
                     context.closePath();
-                    context.fillStyle = "rgba(255, 0, 0, 0.6)";
+                    context.fillStyle = "rgba(0, 122, 251, 0.6)";
                     context.fill();
+                    //点描述
+                    context.textAlign="center";
+                    context.textBaseline="bottom";
+                    context.fillText(_this.data[i],data[i][0], currH - (currH - data[i][1]) * step - 5);
                 }
                 // 画折线
                 context.moveTo(_this.pos.l, currH - (currH - data[0][1]) * step);
                 context.lineWidth = 2;
-                context.strokeStyle = "rgba(255, 0, 0, 0.6)";
+                context.strokeStyle = "rgba(0, 122, 251, 0.6)";
                 for (var i = 0; i < data.length - 1; i++) {
                     context.lineTo(data[i + 1][0], currH - (currH - data[i + 1][1]) * step);
                 }
                 context.stroke();
-                context.strokeStyle = "rgba(255, 0, 0, 0)";
+                context.strokeStyle = "rgba(0, 122, 251, 0)";
                 context.lineTo(w - _this.pos.r, h - _this.pos.b);
                 context.lineTo(_this.pos.l, h - _this.pos.b);
                 context.lineTo(_this.pos.l, currH - (currH - data[0][1]) * step);
                 context.stroke();
-                context.fillStyle = "rgba(255, 0, 0, 0.2)";
+                context.fillStyle = "rgba(0, 122, 251, 0.2)";
                 context.fill();
                 document.insert;
+                step += 0.05;
             } else {
+                step = 0;
                 clearInterval(dataInterval);
             }
         }, 20);
     }
-    updata(options) {
+    updata(data) {
         this.element.innerHTML = "";
-        this.settings.xText = options.xText;
-        this.settings.yText = options.yText;
-        this.settings.data = options.data;
+        this.settings.xText = data.xText;
+        this.settings.yText = data.yText;
+        this.settings.data = data.data;
+        this.step = 0;
+        this._init();
+    }
+    addData(data) {
+        this.element.innerHTML = "";
+        this.settings.xText.shift();
+        this.settings.xText.push(data[0]);
+        this.settings.data.shift();
+        this.settings.data.push(data[1]);
+        this.step = 1;
         this._init();
     }
 }

@@ -21,23 +21,30 @@
 <script>
     var linChar1 = new lineChar({
         id: 'canvas',
-        xText: ["1", "2", "3", "4", "5"],
-        yText: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-        data: [0.4, 0.15, 0.2, 0.1, 0.25]
+        xText: ["1", "2", "3", "4", "5","6", "7", "8", "9", "10"],
+        yScore:{
+            max:1010,
+            min:500,
+            step:100
+        },
+        data: [500, 600, 700,800, 900,900, 800,700, 600,500]
     });
+    var num = 10;
     setInterval(function () {
-        var date = new Date();
-        h = date.getHours();
-        m = date.getMinutes();
-        newXText = [];
-        for (var i = 0; i < 5; i++) {
-            newXText.push(h + ":" + (m - 4 + i));
-        }
-        linChar1.updata({
-            xText: newXText,
-            yText: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-            data: [Math.random(), Math.random(), Math.random(), Math.random(), Math.random()]
-        });
+        // var date = new Date();
+        // h = date.getHours();
+        // m = date.getMinutes();
+        // newXText = [];
+        // for (var i = 0; i < 5; i++) {
+        //     newXText.push(h + ":" + (m - 4 + i));
+        // }
+        // linChar1.updata({
+        //     xText: newXText,
+        //     yText: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+        //     data: [Math.random(), Math.random(), Math.random(), Math.random(), Math.random()]
+        // });
+        linChar1.addData([num++,Math.random()*500+500>>0]);
+
     }, 2000)
 </script>
 

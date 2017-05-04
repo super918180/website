@@ -7,9 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>折线图</title>
     <style>
+        html,
+        body {
+            height: 100%;
+        }
+
         #canvas {
-            width: 500px;
-            height: 500px;
+            margin: 0 auto;
+            width: 50%;
+            height: 60%;
         }
     </style>
     <script src="lineChar.js"></script>
@@ -19,15 +25,15 @@
     <div id="canvas"></div>
 </body>
 <script>
-    var linChar1 = new lineChar({
+    var linChar1 = new LineChar({
         id: 'canvas',
-        xText: ["1", "2", "3", "4", "5","6", "7", "8", "9", "10"],
-        yScore:{
-            max:1010,
-            min:500,
-            step:100
+        xText: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+        yScore: {
+            max: 1010,
+            min: 500,
+            step: 100
         },
-        data: [500, 600, 700,800, 900,900, 800,700, 600,500]
+        data: [500, 600, 700, 800, 900, 900, 800, 700, 600, 500]
     });
     var num = 10;
     setInterval(function () {
@@ -43,7 +49,7 @@
         //     yText: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
         //     data: [Math.random(), Math.random(), Math.random(), Math.random(), Math.random()]
         // });
-        linChar1.addData([num++,Math.random()*500+500>>0]);
+        linChar1.addData([num++, Math.random() * 500 + 500 >> 0]);
 
     }, 2000)
 </script>

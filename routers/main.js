@@ -44,7 +44,7 @@ router.get('/', function(req, res, next) {
 
         var skip = (data.page - 1) * data.limit;
 
-        Examples.where(where).find(rule).limit(data.limit).skip(skip).then(function(examples) {
+        Examples.where(where).find(rule).sort({ "link": 1 }).limit(data.limit).skip(skip).then(function(examples) {
             res.render('index', {
                 category: data.category,
                 examples: examples,
@@ -61,12 +61,14 @@ router.get('/details', function(req, res, next) {
     var link = parseInt(req.query.id, 10);
     Examples.count().then(function(count) {
         Examples.findOne({ "link": link }).then(function(example) {
-            Examples.findOne({ "link": link - 1 }).then(function(pre) {
-                Examples.findOne({ "link": link + 1 }).then(function(next) {
-                    res.render('details', {
-                        example: example,
-                        pre: pre,
-                        next: next
+            Examples.update({ "link": link }, { $set: { "see": example.see + 1 } }).then(function(newExample) {
+                Examples.findOne({ "link": link - 1 }).then(function(pre) {
+                    Examples.findOne({ "link": link + 1 }).then(function(next) {
+                        res.render('details', {
+                            example: example,
+                            pre: pre,
+                            next: next
+                        });
                     });
                 });
             });

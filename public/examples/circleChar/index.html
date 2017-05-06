@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="circleChar.js"></script>
+</head>
+
+<body>
+    <div>
+        <canvas id="process1_1" width="200" height="200"></canvas>
+        <canvas id="process1_2" width="200" height="200"></canvas>
+        <canvas id="process1_3" width="200" height="200"></canvas>
+        <canvas id="process1_4" width="200" height="200"></canvas>
+    </div>
+    <div>
+        <canvas id="process2_1" width="200" height="200"></canvas>
+        <canvas id="process2_2" width="200" height="200"></canvas>
+        <canvas id="process2_3" width="200" height="200"></canvas>
+        <canvas id="process2_4" width="200" height="200"></canvas>
+    </div>
+
+</body>
+<script>
+    var process1_1 = new CircleChar('process1_1', 80, 0, true, "#4FD860");
+    var process1_2 = new CircleChar('process1_2', 50, 1, true, "#30A5FF");
+    var process1_3 = new CircleChar('process1_3', 70, 2, true, "#F9243F");
+    var process1_4 = new CircleChar('process1_4', 40, 3, true, "#FF9600");
+    var process2_1 = new CircleChar('process2_1', 80, 0, false, "#008792");
+    var process2_2 = new CircleChar('process2_2', 50, 1, false, "#ea66a6");
+    var process2_3 = new CircleChar('process2_3', 70, 2, false, "#007d65");
+    var process2_4 = new CircleChar('process2_4', 40, 3, false, "#ed1941");
+    animate(process1_1);
+    animate(process1_2);
+    animate(process1_3);
+    animate(process1_4);
+    animate(process2_1);
+    animate(process2_2);
+    animate(process2_3);
+    animate(process2_4);
+
+    function animate(obj) {
+        setInterval(function() {
+            obj.animate(Math.random() * 100 >> 0);
+        }, 2000);
+    }
+</script>
+
+
+</html>

@@ -59,4 +59,19 @@ $(function() {
     $('#allList .exampleBg').each(function() {
         $(this).css('background', '#' + Math.floor(Math.random() * 16777215).toString(16));
     });
+    //点赞效果
+    $("#praise-btn").click(function() {
+        if (!$("#praise-btn i").hasClass("is-praise")) {
+            $.post("/praise", { "id": window.location.search.replace("?id=", "") }, function(result) {
+                var result = $.parseJSON(result);
+                if (result.isOk) {
+                    $("#praise-btn i").addClass("is-praise");
+                    $("#praise-btn b").css('opacity', '.5').html("已点赞");
+                    var currNum = parseInt($("#praise-btn .praisenum").html(), 10);
+                    $("#praise-btn .praisenum").html(++currNum);
+                }
+
+            });
+        }
+    })
 });

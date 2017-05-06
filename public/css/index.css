@@ -158,3 +158,77 @@ input::-webkit-input-placeholder {
     width: 100%;
     height: 100%;
 }
+
+#praise-btn {
+    cursor: pointer;
+    margin: 0 auto;
+    padding: 15px 30px 11px 65px;
+    width: 300px;
+    border-radius: 100px;
+    background: #e67e22;
+    position: relative;
+    transition: all .2s ease-out
+}
+
+#praise-btn b {
+    font-size: 26px;
+    opacity: 1;
+    transition: all .2s ease-out;
+}
+
+#praise-btn em {
+    line-height: 46px;
+    font-size: 14px;
+    font-style: normal;
+}
+
+#praise-btn .is-praise {
+    font-size: 38px;
+    opacity: .5;
+}
+
+#praise-btn i {
+    top: 16px;
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    text-align: center;
+    left: 15px;
+    position: absolute;
+    opacity: 1;
+    transition: all .2s ease-out;
+}
+
+#praise-btn.active {
+    background: none;
+}
+
+#praise-btn.active i {
+    color: #3498db;
+}
+
+#praise-btn.active b {
+    color: #4f5f6e;
+}
+
+#praise-btn.active em {
+    color: #9dacb9;
+}
+
+#praise-btn:hover {
+    background: #f39c12;
+}
+
+#praise-btn i,
+#praise-btn b,
+#praise-btn em {
+    color: #fff;
+}
+
+#praise-btn:hover i,
+#praise-btn:hover b,
+#praise-btn:hover em {
+    color: #fff!important;
+}

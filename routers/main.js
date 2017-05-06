@@ -76,4 +76,11 @@ router.get('/details', function(req, res, next) {
     });
 
 });
+
+router.post('/praise', function(req, res, next) {
+    var link = parseInt(req.body.id, 10);
+    Examples.update({ "link": link }, { $inc: { love: 1 } }).then(function(example) {
+        res.end('{"isOk":true}');
+    });
+});
 module.exports = router;

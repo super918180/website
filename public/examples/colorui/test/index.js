@@ -331,4 +331,5 @@ $(function() {
             modal1.show();
         }
     });
+    $(window).scrollTop(0);
 });

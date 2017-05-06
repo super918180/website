@@ -1,0 +1,29 @@
+git config --global user.name "songjiachao" 
+git config --global user.email "873668938@qq.com"
+//检查已有的配置信息
+$ git config --list 
+
+centos安装node
+ yum -y install gcc gcc-c++ openssl-devel
+ yum -y install nodejs
+yum -y install mongodb-server  mongodb
+#启动
+service mongod start
+#停止
+service mongod stop
+#重启
+service mongod restart
+#增加开机启动
+chkconfig mongod on
+
+git
+yum install git
+git config --global user.name "songjiachao"
+git config --global user.email "873668938@qq.com"
+git config --list
+
+git clone https://github.com/super918180/website.git
+git init
+git pull
+
+

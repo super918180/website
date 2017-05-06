@@ -26,7 +26,22 @@
         canvas.width = 800;
         canvas.height = 500;
         var context = canvas.getContext("2d");
-        setInterval(function() {
+        var t = 0;
+        var updateInterval = setInterval(function() {
+            console.log(1);
+            t++
+            if (t > 150) {
+                t = 0;
+                ball = {
+                    x: 512,
+                    y: 100,
+                    r: 20,
+                    g: 2,
+                    vx: -4,
+                    vy: 0,
+                    color: '#' + Math.floor(Math.random() * 16777215).toString(16)
+                };
+            }
             render(context);
             update();
         }, 20);

@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
     data.examples = req.query.examples || '';
     data.count = 0;
     data.page = Number(req.query.page || 1);
-    data.limit = 12;
+    data.limit = 8;
     data.pages = 0;
     data.category = req.query.category || 'all';
 
